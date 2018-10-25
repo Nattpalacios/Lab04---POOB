@@ -134,7 +134,7 @@ public class Iemois{
      * @return 
      */
     public ArrayList<Mooc> busque(String prefijo){
-        ArrayList<Mooc> resultados=null;
+        ArrayList<Mooc> resultados = new ArrayList<Mooc>();
     	prefijo=prefijo.toUpperCase();
     	for(int i=0;i<cursos.size();i++){
     	    if(cursos.get(i).getNombre().toUpperCase().startsWith(prefijo)){
