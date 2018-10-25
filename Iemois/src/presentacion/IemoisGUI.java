@@ -269,7 +269,7 @@ public class IemoisGUI extends JFrame{
     		coleccion.adicione(textoNombre.getText(),textoArea.getText(),textoObjetivo.getText(), textoDistribuidor.getText(), 
     		textoSemanas.getText());
     	}catch(IemoisExcepcion e){
-    		//Registro.registre(e);
+    		Registro.registre(e);
     		JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
     	}
         
@@ -279,12 +279,18 @@ public class IemoisGUI extends JFrame{
         String patronBusqueda=busquedaTexto.getText();
         StringBuffer buffer = new StringBuffer();
         if(patronBusqueda.length() > 0) {
-            ArrayList <Mooc> results = coleccion.busque(patronBusqueda);
-            for(int i = 0; i < results.size(); i++) {
-                buffer.append(results.get(i).toString());
-                buffer.append('\n');
-                buffer.append('\n');
-             }
+        	try {
+        		ArrayList <Mooc> results = coleccion.busque(patronBusqueda);
+                for(int i = 0; i < results.size(); i++) {
+                    buffer.append(results.get(i).toString());
+                    buffer.append('\n');
+                    buffer.append('\n');
+                 }
+        	}catch(Exception e) {
+        		Registro.registre(e);
+        		JOptionPane.showMessageDialog(null, "Error al buscar","Error",JOptionPane.WARNING_MESSAGE);
+        	}
+            
         }
         resultadosTexto.setText(buffer.toString());
     } 
