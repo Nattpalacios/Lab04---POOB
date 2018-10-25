@@ -62,6 +62,62 @@ public class IemoisTest {
 		}
 	}
 	
+	/**@Test
+	public void noDeberiaAdicionarSiYaExisteElCurso() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("Aprendiendo a Programar","Programacion","Aprender a programar en python","python","4");
+			iemoi.adicione("Aprendiendo a Programar","Programacion","Aprender a programar en python","python","4");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.CURSO_REPETIDO);
+		}
+	}*/
+	
+	@Test
+	public void noDeberiaAdicionarSinNombre() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("","Programacion","Aprender a programar en python","python","4");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.NOMBRE_VACIO);
+		}
+	}
+	
+	@Test
+	public void noDeberiaAdicionarSinArea() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("Aprendiendo a Programar","","Aprender a programar en python","python","4");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.AREA_VACIA);
+		}
+	}
+	
+	@Test
+	public void noDeberiaAdicionarSinObjetivo() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("Aprendiendo a Programar","Programacion","","python","4");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.OBJETIVO_VACIO);
+		}
+	}
+	
+	@Test
+	public void noDeberiaAdicionarSinSemanas() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("Aprendiendo a Programar","Programacion","Aprender a programar en python","python","");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.SEMANAS_VACIO);
+		}
+	}
+	
 	@After
     public void tearDown(){
     }

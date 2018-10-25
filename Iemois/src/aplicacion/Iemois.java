@@ -48,7 +48,7 @@ public class Iemois{
    
     
     /**
-     * Consulta la información de un curso
+     * Consulta la informacion de un curso
      */
     public Mooc getInformacion(String nombre,String distribuidor){
     	Mooc c=null;
@@ -69,8 +69,42 @@ public class Iemois{
 	   if(distribuidor.isEmpty()) {
 		   throw new IemoisExcepcion(IemoisExcepcion.NO_DISTRIBUIDOR);
 	   }
+	   if(!noExiste(new Mooc(nombre, area, objetivo, distribuidor, semanas))) {
+		   throw new IemoisExcepcion(IemoisExcepcion.CURSO_REPETIDO);
+	   }
+		   
+	   if(nombre.isEmpty()) {
+		   throw new IemoisExcepcion(IemoisExcepcion.NOMBRE_VACIO);
+	   }
+	   
+	   if(area.isEmpty()) {
+		   throw new IemoisExcepcion(IemoisExcepcion.AREA_VACIA);
+	   }
+	   
+	   if(objetivo.isEmpty()) {
+		   throw new IemoisExcepcion(IemoisExcepcion.OBJETIVO_VACIO);
+	   }
+	   
+	   if(semanas.isEmpty()) {
+		   throw new IemoisExcepcion(IemoisExcepcion.SEMANAS_VACIO);
+	   }
 	   
 	   adicione(new Mooc(nombre, area, objetivo, distribuidor, semanas));
+    }
+    
+    /**
+     * Verifica si ya existe el curso
+     * @param cursoo Es el curso que voy a verificar
+     * @return Si existe o no
+     */
+    private boolean noExiste(Mooc cursoo) {
+    	boolean flag = true;
+    	for(int i = 0; i < cursos.size(); i++) {
+    		if(cursos.get(i).equals(cursoo)) {
+    			flag = false;
+    		}
+    	}
+    	return flag;
     }
 
     /**
