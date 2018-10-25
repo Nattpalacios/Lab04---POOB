@@ -118,6 +118,17 @@ public class IemoisTest {
 		}
 	}
 	
+	@Test
+	public void noDeberiaAdicionarSiSemanasNoEsNumero() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		try {
+			iemoi.adicione("Aprendiendo a Programar","Programacion","Aprender a programar en python","python","b");
+			fail("No lanzo excepcion");
+		}catch(IemoisExcepcion e) {
+			assertEquals(e.getMessage(), IemoisExcepcion.SEMANAS_MAL);
+		}
+	}
+	
 	@After
     public void tearDown(){
     }

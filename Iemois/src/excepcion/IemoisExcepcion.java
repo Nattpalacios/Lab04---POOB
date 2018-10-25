@@ -8,7 +8,7 @@ public class IemoisExcepcion extends Exception{
 	public static final String AREA_VACIA= "El area no es conocida";
 	public static final String OBJETIVO_VACIO= "El objetivo no es conocido";
 	public static final String SEMANAS_VACIO= "Las semanas no son conocidas";
-	
+	public static final String SEMANAS_MAL= "Las semanas no estan bien";
 	
 	public IemoisExcepcion(String message) {
 		super(message);

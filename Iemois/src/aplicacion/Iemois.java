@@ -66,6 +66,9 @@ public class Iemois{
      * Adiciona un nuevo curso
      */
     public void adicione(String nombre, String area,  String objetivo, String  distribuidor, String semanas) throws IemoisExcepcion{
+    	
+    	int num = 0;
+    	
 	   if(distribuidor.isEmpty()) {
 		   throw new IemoisExcepcion(IemoisExcepcion.NO_DISTRIBUIDOR);
 	   }
@@ -87,6 +90,11 @@ public class Iemois{
 	   
 	   if(semanas.isEmpty()) {
 		   throw new IemoisExcepcion(IemoisExcepcion.SEMANAS_VACIO);
+	   }
+	   try {
+		   num = Integer.parseInt(semanas);
+	   }catch(NumberFormatException e) {
+		   throw new IemoisExcepcion(IemoisExcepcion.SEMANAS_MAL);
 	   }
 	   
 	   adicione(new Mooc(nombre, area, objetivo, distribuidor, semanas));
