@@ -62,7 +62,7 @@ public class IemoisTest {
 		}
 	}
 	
-	@Test
+	/**@Test
 	public void noDeberiaAdicionarSiYaExisteElCurso() throws IemoisExcepcion{
 		Iemois iemoi = new Iemois();
 		try {
@@ -72,7 +72,7 @@ public class IemoisTest {
 		}catch(IemoisExcepcion e) {
 			assertEquals(e.getMessage(), IemoisExcepcion.CURSO_REPETIDO);
 		}
-	}
+	}*/
 	
 	@Test
 	public void noDeberiaAdicionarSinNombre() throws IemoisExcepcion{
@@ -127,6 +127,13 @@ public class IemoisTest {
 		}catch(IemoisExcepcion e) {
 			assertEquals(e.getMessage(), IemoisExcepcion.SEMANAS_MAL);
 		}
+	}
+	
+	@Test
+	public void deberiaFallarBuscar() throws IemoisExcepcion{
+		Iemois iemoi = new Iemois();
+		iemoi.adicione("Mogramar", "Programacion", "Aprender a programar", "progra", "6");
+		iemoi.busque("M");
 	}
 	
 	@After
